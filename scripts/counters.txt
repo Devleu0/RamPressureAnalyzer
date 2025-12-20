@@ -1,0 +1,4 @@
+\Memory\Available MBytes
+\Paging File(*)\% Usage
+\Memory\Pages/sec
+\Processor(_Total)\% Processor Time
