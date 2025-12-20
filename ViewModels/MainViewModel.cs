@@ -11,7 +11,7 @@ namespace RamPressureAnalyzer.ViewModels
         private readonly ScriptRunner _runner = new ScriptRunner();
 
         [ObservableProperty]
-        private string _statusMessage = "Ready to analyze.";
+        private string _statusMessage = ">> Ready to analyze.";
 
         [ObservableProperty]
         private string _analysisReport = "";
@@ -26,7 +26,7 @@ namespace RamPressureAnalyzer.ViewModels
             {
                 _runner.StartLogging();
                 IsRecording = true;
-                StatusMessage = "🔴 Recording memory usage... (Do your work!)";
+                StatusMessage = ">> Recording memory usage... (Do your work!)";
                 AnalysisReport = "";
             }
             catch (Exception ex)
@@ -39,7 +39,7 @@ namespace RamPressureAnalyzer.ViewModels
         public async Task StopAndAnalyze()
         {
             IsRecording = false;
-            StatusMessage = "🟡 Stopping and Analyzing...";
+            StatusMessage = ">> Stopping and Analyzing...";
 
             // 1. 로그 중지
             await Task.Run(() => _runner.StopLogging());
@@ -49,12 +49,12 @@ namespace RamPressureAnalyzer.ViewModels
 
             if (result == null || result.Stats == null || result.Result == null)
             {
-                StatusMessage = "❌ Analysis failed.";
+                StatusMessage = ">> Analysis failed.";
                 AnalysisReport = "로그 데이터가 없거나 분석에 실패했습니다.\n관리자 권한을 확인해주세요.";
                 return;
             }
 
-            StatusMessage = "🟢 Analysis Complete.";
+            StatusMessage = ">> Analysis Complete.";
 
             // 3. 한국어 번역 가져오기
             var (korStatus, korMsg) = TranslateResult(result.Result.Status);
@@ -70,7 +70,7 @@ namespace RamPressureAnalyzer.ViewModels
                 [세부 데이터 (Details)]
                 - 평균 가용 램 (Avg Available RAM): {result.Stats.AvgAvailableMB} MB
                 - 최대 스왑 사용 (Max Swap Usage): {result.Stats.MaxPageFileUsage} %
-                - 렉 유발 빈도 (Hard Faults): {result.Stats.AvgPagesPerSec} /sec
+                - 렉 유발 빈도 (Page Faults): {result.Stats.AvgPagesPerSec} /sec
                 """;
         }
 
@@ -83,7 +83,7 @@ namespace RamPressureAnalyzer.ViewModels
 
                 "WARNING" => ("주의", "가상 메모리 의존도가 높습니다. 여유가 된다면 업그레이드를 고려하세요."),
 
-                "LAGGY" => ("버벅임 감지", "잦은 스와핑(하드 폴트)으로 인해 성능 저하가 발생하고 있습니다."),
+                "LAGGY" => ("버벅임 감지", "잦은 스와핑(페이지 폴트)으로 인해 성능 저하가 발생하고 있습니다."),
 
                 "CRITICAL" => ("심각", "물리 메모리가 매우 부족합니다. 램 증설이 필수적입니다."),
 

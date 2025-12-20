@@ -40,9 +40,9 @@
                 <TextBlock TextWrapping="Wrap" Foreground="#4B5563" FontSize="12" LineHeight="18">
                     <Run FontWeight="Bold" Text="2. 남은 용량의 함정 (Don't trust 'Available RAM')" Foreground="#111827"/>
                     <LineBreak/>
-                    <Run Text="사용 가능 메모리가 남아있어도, 하드 폴트(스와핑) 수치가 높으면 램 부족 상태입니다."/>
+                    <Run Text="사용 가능 메모리가 남아있어도, 페이지 폴트(스와핑) 수치가 높으면 램 부족 상태입니다."/>
                     <LineBreak/>
-                    <Run Text="(Even if RAM seems available, high 'Hard Faults' indicate memory pressure. Watch the fault rate!)" FontStyle="Italic" Foreground="#6B7280"/>
+                    <Run Text="(Even if RAM seems available, high 'Page Faults' indicate memory pressure. Watch the fault rate!)" FontStyle="Italic" Foreground="#6B7280"/>
                 </TextBlock>
             </StackPanel>
         </Border>
