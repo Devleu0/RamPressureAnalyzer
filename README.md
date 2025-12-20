@@ -29,7 +29,7 @@ Portable. No installation required. Just unzip and run.
 2.  **Start Logging**: Click the [Start Logging] button.
 3.  **Work/Game**: Perform your heavy tasks (Gaming, Rendering, Compiling, etc.). A minimum of 10 minutes is recommended.
 4.  **Stop & Analyze**: Click [Stop & Analyze] when finished.
-5.  **Check Verdict**:
+5.  **Check Verdict**
     * **NORMAL**: RAM is sufficient. Save your money.
     * **WARNING**: High dependency on virtual memory. Consider upgrading if budget allows.
     * **CRITICAL**: Performance loss due to RAM shortage confirmed. Upgrade recommended.
@@ -40,6 +40,7 @@ Admin rights are mandatory to access Windows Performance Counters. This applicat
 
 ## File Structure
 
+```
 RamPressureAnalyzer/
 ├── RamPressureAnalyzer.exe  # Main executable
 └── scripts/                 # Core logic (Editable)
@@ -47,6 +48,7 @@ RamPressureAnalyzer/
     ├── stop_log.bat
     ├── analyze.ps1          # Analysis logic
     └── counters.txt         # List of performance counters
+```
 
 ## License
 MIT License. Free to use, modify, and distribute.
