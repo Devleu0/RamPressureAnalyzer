@@ -35,10 +35,6 @@ Portable. No installation required. Just unzip and run.
     * **CRITICAL**: Performance loss due to RAM shortage confirmed. Upgrade recommended.
 
 ## FAQ
-
-**Q. I get a "Windows protected your PC" (SmartScreen) warning.**
-As an individual developer, I did not purchase an expensive Code Signing Certificate. This is not malware. Click [More Info] -> [Run anyway]. If you are concerned, feel free to build the code yourself from the source.
-
 **Q. Why does it require Administrator privileges?**
 Admin rights are mandatory to access Windows Performance Counters. This application does not modify any other system settings.
 
