@@ -9,7 +9,7 @@ This is not a "Game Booster" or a "Memory Cleaner." It is a lightweight GUI wrap
 ## Background
 
 * **Task Manager is misleading:** Seeing 80% RAM usage often causes unnecessary panic. High usage is normal; unused RAM is wasted RAM.
-* **The real bottleneck:** Performance degradation (stuttering) occurs during **Hard Faults**—when the system is forced to swap data between Disk and RAM actively.
+* **The real bottleneck:** Performance degradation (stuttering) occurs during **Page Faults**—when the system is forced to swap data between Disk and RAM actively.
 * **Data-driven decision:** This tool records background performance metrics while you game or work, then analyzes the logs to give a definitive "Upgrade" or "Don't Upgrade" verdict.
 
 ## Architecture
