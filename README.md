@@ -14,15 +14,13 @@ This is not a "Game Booster" or a "Memory Cleaner." It is a lightweight GUI wrap
 
 ## Architecture
 
-No black-box magic. I value transparency. Feel free to inspect the `scripts` folder.
-
 1.  **UI (WPF)**: Acts as a remote control. It simply triggers the batch files.
 2.  **Collector (Logman)**: Uses the native `logman.exe` to save CSV logs. (Negligible system resource usage).
 3.  **Analyzer (PowerShell)**: Parses the CSV logs after the session to generate a report.
 
 ## Usage
 
-Portable. No installation required. Just unzip and run.
+No installation required. Just unzip and run.
 
 1.  **Run**: Open `RamPressureAnalyzer.exe`.
     (Requires Administrator privileges to access `logman`.)
@@ -34,7 +32,6 @@ Portable. No installation required. Just unzip and run.
     * **WARNING**: High dependency on virtual memory. Consider upgrading if budget allows.
     * **CRITICAL**: Performance loss due to RAM shortage confirmed. Upgrade recommended.
 
-## FAQ
 **Q. Why does it require Administrator privileges?**
 Admin rights are mandatory to access Windows Performance Counters. This application does not modify any other system settings.
 
