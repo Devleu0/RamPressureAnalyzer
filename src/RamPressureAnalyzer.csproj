@@ -17,10 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Page Remove="Views\App.xaml" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Update="scripts\**">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
