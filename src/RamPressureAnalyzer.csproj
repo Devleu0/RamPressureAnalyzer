@@ -21,10 +21,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ApplicationDefinition Include="Views\App.xaml" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Update="scripts\**">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -47,10 +43,6 @@
 
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="scripts\logs\" />
   </ItemGroup>
 
 </Project>
