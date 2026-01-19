@@ -6,18 +6,144 @@
         xmlns:vm="clr-namespace:RamPressureAnalyzer.ViewModels"
         mc:Ignorable="d"
         Title="RAM Pressure Analyzer"
-        Height="620" Width="480"
-        ResizeMode="CanResizeWithGrip">
+        Height="650" Width="500"
+        ResizeMode="CanResizeWithGrip"
+        FontFamily="Segoe UI, Malgun Gothic"
+        Background="#F9F9F9"
+        WindowStartupLocation="CenterScreen">
 
     <Window.DataContext>
         <vm:MainViewModel />
     </Window.DataContext>
 
-    <Grid Margin="15">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="4*"/>
-        </Grid.ColumnDefinitions>
+    <Window.Resources>
+        <DropShadowEffect x:Key="CardShadow" BlurRadius="10" ShadowDepth="2" Direction="270" Color="#000000" Opacity="0.05"/>
+
+        <Style x:Key="CardBorderStyle" TargetType="Border">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#E5E5E5"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Effect" Value="{StaticResource CardShadow}"/>
+            <Setter Property="Padding" Value="15"/>
+            <Setter Property="Margin" Value="0,0,0,15"/>
+        </Style>
+
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#D1D5DB"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Foreground" Value="#374151"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" 
+                                Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                CornerRadius="8" 
+                                SnapsToDevicePixels="true">
+                            <Border.Effect>
+                                <DropShadowEffect BlurRadius="4" ShadowDepth="1" Direction="270" Color="#000000" Opacity="0.05"/>
+                            </Border.Effect>
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="Center" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="#F3F4F6"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="#9CA3AF"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="#E5E7EB"/>
+                                <Setter Property="RenderTransform">
+                                    <Setter.Value>
+                                        <ScaleTransform ScaleX="0.98" ScaleY="0.98" CenterX="0.5" CenterY="0.5"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ToggleSwitchStyle" TargetType="CheckBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="CheckBox">
+                        <Grid Background="Transparent">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Border x:Name="Border" Width="40" Height="20" CornerRadius="10" Background="#E5E7EB" BorderBrush="#D1D5DB" BorderThickness="1">
+                                <Ellipse x:Name="Ellipse" Fill="White" Width="16" Height="16" HorizontalAlignment="Left" Margin="2,0,0,0">
+                                    <Ellipse.Effect>
+                                        <DropShadowEffect BlurRadius="2" ShadowDepth="1" Opacity="0.2"/>
+                                    </Ellipse.Effect>
+                                </Ellipse>
+                            </Border>
+                            <ContentPresenter Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="#3B82F6"/>
+                                <Setter TargetName="Border" Property="BorderBrush" Value="#3B82F6"/>
+                                <Setter TargetName="Ellipse" Property="HorizontalAlignment" Value="Right"/>
+                                <Setter TargetName="Ellipse" Property="Margin" Value="0,0,2,0"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="ComboBox">
+            <Setter Property="Padding" Value="10,6"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#D1D5DB"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="ItemContainerStyle">
+                <Setter.Value>
+                    <Style TargetType="ComboBoxItem">
+                        <Setter Property="Padding" Value="5"/>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBox">
+                        <Border Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                CornerRadius="6">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="30"/>
+                                </Grid.ColumnDefinitions>
+                                <ContentPresenter Content="{TemplateBinding SelectionBoxItem}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0"/>
+                                <Path Grid.Column="1" Data="M0,0 L4,4 L8,0" Stroke="#6B7280" StrokeThickness="1.5" HorizontalAlignment="Center" VerticalAlignment="Center" IsHitTestVisible="False"/>
+                                <ToggleButton Grid.ColumnSpan="2" Opacity="0" IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"/>
+                                <Popup IsOpen="{TemplateBinding IsDropDownOpen}" Placement="Bottom" MinWidth="{TemplateBinding ActualWidth}">
+                                    <Border Background="White" BorderBrush="#E5E5E5" BorderThickness="1" CornerRadius="4" MaxHeight="200">
+                                        <ScrollViewer>
+                                            <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained"/>
+                                        </ScrollViewer>
+                                    </Border>
+                                </Popup>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -25,62 +151,80 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Border Grid.Row="0" Background="#F0F2F5" BorderBrush="#D1D5DB" BorderThickness="1" CornerRadius="6" Padding="12" Margin="0,0,0,722" Grid.ColumnSpan="2">
+        <Border Grid.Row="0" Style="{StaticResource CardBorderStyle}">
             <StackPanel>
-                <TextBlock Text="측정 팁 (Quick Tips)" FontWeight="Bold" FontSize="14" Foreground="#374151" Margin="0,0,0,10"/>
+                <TextBlock FontWeight="Bold" FontSize="16" Foreground="#111827" Margin="0,0,0,12" Text="이용 시 확인 (Instructions)"/>
 
-                <TextBlock TextWrapping="Wrap" Margin="0,0,0,8" Foreground="#4B5563" FontSize="12" LineHeight="18">
-                    <Run FontWeight="Bold" Text="1. 로딩 끝난 후 측정 (Measure after loading)" Foreground="#111827"/>
-                    <LineBreak/>
-                    <Run Text="게임/프로그램 로딩 중에는 수치가 튈 수 있습니다. 로딩이 끝나고 시작하세요."/>
-                    <LineBreak/>
-                    <Run Text="(Metrics can spike during startup. Start logging after the game/app has fully loaded.)" FontStyle="Italic" Foreground="#6B7280"/>
-                </TextBlock>
+                <StackPanel Margin="0,0,0,10">
+                    <TextBlock FontSize="14" FontWeight="Bold" Foreground="#374151" Text="1. 로딩 후 측정 (Measure after loading)"/>
+                    <TextBlock FontSize="13" Foreground="#4B5563" TextWrapping="Wrap" Margin="0,2,0,0">
+                        게임/프로그램 로딩 중에는 수치가 튈 수 있습니다. 로딩이 끝나고 시작하세요.
+                    </TextBlock>
+                    <TextBlock FontSize="12" Foreground="#9CA3AF" FontStyle="Italic" TextWrapping="Wrap" Margin="0,2,0,0">
+                        Metrics can spike during startup. Start logging after the game/app has fully loaded.
+                    </TextBlock>
+                </StackPanel>
 
-                <TextBlock TextWrapping="Wrap" Foreground="#4B5563" FontSize="12" LineHeight="18">
-                    <Run FontWeight="Bold" Text="2. 남은 용량의 함정 (Don't trust 'Available RAM')" Foreground="#111827"/>
-                    <LineBreak/>
-                    <Run Text="사용 가능 메모리가 남아있어도, 페이지 폴트(스와핑) 수치가 높으면 램 부족 상태입니다."/>
-                    <LineBreak/>
-                    <Run Text="(Even if RAM seems available, high 'Page Faults' indicate memory pressure. Watch the fault rate!)" FontStyle="Italic" Foreground="#6B7280"/>
-                </TextBlock>
+                <StackPanel>
+                    <TextBlock FontSize="14" FontWeight="Bold" Foreground="#374151" Text="2. 남은 용량의 함정 (Available RAM != Safe)"/>
+                    <TextBlock FontSize="13" Foreground="#4B5563" TextWrapping="Wrap" Margin="0,2,0,0">
+                        사용 가능 메모리가 남아있어도, 페이지 폴트 수치가 높으면 램 부족 상태입니다.
+                    </TextBlock>
+                    <TextBlock FontSize="12" Foreground="#9CA3AF" FontStyle="Italic" TextWrapping="Wrap" Margin="0,2,0,0">
+                        High 'Page Faults' indicate memory pressure even if RAM seems available.
+                    </TextBlock>
+                </StackPanel>
             </StackPanel>
         </Border>
 
-        <TextBlock
-                   Text="{Binding StatusMessage}"
-                   FontSize="16" FontWeight="Bold" Foreground="#111827"
-                   HorizontalAlignment="Left" Margin="0,245,0,681" Grid.ColumnSpan="2" Width="450" />
+        <Border Grid.Row="1" Margin="0,10,0,20" Padding="10" Background="Transparent">
+            <TextBlock Text="{Binding StatusMessage}"
+                       FontSize="16" 
+                       FontWeight="Bold" 
+                       Foreground="Black"
+                       HorizontalAlignment="Center" 
+                       TextAlignment="Center" Height="21" VerticalAlignment="Top"/>
+        </Border>
 
-        <Grid Margin="0,281,0,621" Grid.ColumnSpan="2">
+        <Grid Grid.Row="2" Margin="0,0,0,20">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="15"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
             <Button Grid.Column="0" 
                     Content="Start Logging"
                     Command="{Binding StartLogCommand}"
-                    Height="45" FontSize="14" FontWeight="SemiBold"/>
+                    Height="50"/>
 
             <Button Grid.Column="2" 
                     Content="Stop &amp; Analyze"
                     Command="{Binding StopAndAnalyzeCommand}"
-                    Height="45" FontSize="14" FontWeight="SemiBold"/>
+                    Height="50"/>
         </Grid>
 
-        <GroupBox Header="Analysis Report" FontWeight="Bold" Foreground="#333333" Grid.ColumnSpan="2" Margin="0,341,0,373">
-            <TextBox Text="{Binding AnalysisReport}"
-                     IsReadOnly="True"
-                     TextWrapping="Wrap"
-                     VerticalScrollBarVisibility="Auto"
-                     FontFamily="Consolas" 
-                     FontSize="13"
-                     Background="#FAFAFA"
-                     BorderThickness="0"
-                     Padding="10" Height="203"/>
-        </GroupBox>
+        <Border Grid.Row="3" Style="{StaticResource CardBorderStyle}" Margin="0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
 
+                <TextBlock Grid.Row="0" Text="Analysis Report" FontWeight="Bold" FontSize="15" Foreground="#111827" Margin="0,0,0,10"/>
+
+                <TextBox Grid.Row="1"
+                         Text="{Binding AnalysisReport}"
+                         IsReadOnly="True"
+                         TextWrapping="Wrap"
+                         VerticalScrollBarVisibility="Auto"
+                         FontFamily="Consolas" 
+                         FontSize="13"
+                         Foreground="#374151"
+                         Background="Transparent"
+                         BorderThickness="0"
+                         Padding="0"/>
+            </Grid>
+        </Border>
     </Grid>
-</Window>
+</Window> 
