@@ -1,5 +1,7 @@
 # RamPressureAnalyzer
 
+[![Download](https://img.shields.io/badge/Download-Latest_Release-blue?style=for-the-badge&logo=github)](https://github.com/Devleu0/RamPressureAnalyzer/releases/latest)
+
 ![License](https://img.shields.io/badge/license-MIT-blue) ![Platform](https://img.shields.io/badge/platform-Windows_x64-lightgrey)
 
 "지금 16GB 사용 중인데, 램 32GB로 업그레이드할까요?"라는 질문에 **데이터**로 답해주는 도구입니다.
@@ -21,6 +23,11 @@
 ## 사용법
 
 설치 없이 압축을 풀고 바로 사용하는 포터블(Portable) 방식입니다.
+
+<div align="center">
+  <img src="/UI.png" width="500" alt="Main Dashboard">
+  <p><em>RamPressureAnalyzer Main Dashboard View</em></p>
+</div>
 
 1. **실행**: RamPressureAnalyzer.exe를 실행합니다.
    (logman 접근을 위해 관리자 권한을 요청합니다.)
