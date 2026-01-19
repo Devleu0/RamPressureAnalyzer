@@ -1,5 +1,5 @@
 # RamPressureAnalyzer
-[Korean Version ↗](readme_kor.md)
+[Korean Version ↗](README-KR.md)
 
 ![License](https://img.shields.io/badge/license-MIT-blue) ![Platform](https://img.shields.io/badge/platform-Windows_x64-lightgrey)
 
