@@ -1,6 +1,8 @@
 # RamPressureAnalyzer
 [Korean Version ↗](README-KR.md)
 
+[![Download](https://img.shields.io/badge/Download-Latest_Release-blue?style=for-the-badge&logo=github)](https://github.com/Devleu0/RamPressureAnalyzer/releases/latest)
+
 ![License](https://img.shields.io/badge/license-MIT-blue) ![Platform](https://img.shields.io/badge/platform-Windows_x64-lightgrey)
 
 A tool that answers the question **"Do I need 32GB of RAM?"** with data, not guesses.
@@ -22,6 +24,11 @@ This is not a "Game Booster" or a "Memory Cleaner." It is a lightweight GUI wrap
 ## Usage
 
 No installation required. Just unzip and run.
+
+<div align="center">
+  <img src="/UI.png" width="500" alt="Main Dashboard">
+  <p><em>RamPressureAnalyzer Main Dashboard View</em></p>
+</div>
 
 1.  **Run**: Open `RamPressureAnalyzer.exe`.
     (Requires Administrator privileges to access `logman`.)
