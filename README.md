@@ -1,5 +1,5 @@
 # RamPressureAnalyzer
-[Korean Version ↗](README-KR.md)
+[한국어 버전 ↗](README-KR.md)
 
 [![Download](https://img.shields.io/badge/Download-Latest_Release-blue?style=for-the-badge&logo=github)](https://github.com/Devleu0/RamPressureAnalyzer/releases/latest)
 
